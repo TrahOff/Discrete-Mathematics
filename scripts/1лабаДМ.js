@@ -105,6 +105,7 @@ function SymmetricDifference(m1,m2){
     result = addition(m1,m2) +" " + addition(m2,m1);
     return result;
 }
+
 //Основая функция
 function res() {
     let resfull = "";

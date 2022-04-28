@@ -1,14 +1,14 @@
 var err, matrix, couple, rows, columns, arr, couplesmatrix, arrlength;
 
 //проверка ввода
-function check(str){
+function check(str) {
     let arr = false;
     var long = str.length;
-    if(long > 0) {
+    if (long > 0) {
         arr = str.split(" ");
         var quantity = arr.length;
         //Проверка на ввод
-        for(let i = 0; i < quantity; i++) {
+        for (let i = 0; i < quantity; i++) {
             if (quantity % 2 != 0) {
                 err = "Ошибка ввода!\nВведены не пары чисел!\nДобавьте или уберите число!";
                 arr = false;
@@ -23,8 +23,7 @@ function check(str){
                 break;
             }
         }
-    }
-    else{
+    } else {
         err = "Массив не должен быть пустым!\nВведите пары чисел!";
     }
     return arr;
@@ -33,8 +32,8 @@ function check(str){
 //счётчик элементов
 function count(arr, el) {
     let k = 0;
-    for(let i=0; i<arr.length; i++)
-        if( arr[i] == el)
+    for (let i = 0; i < arr.length; i++)
+        if (arr[i] == el)
             k++;
     return k;
 }
@@ -42,8 +41,8 @@ function count(arr, el) {
 //выделение элементов массива по одному разу и постороение матрицы из нулей и единиц
 function MatrixTranslation(arr) {
     arrlength = arr.length;
-    for(let i=0; i< arrlength; i++){
-        if (count(arr, arr[i]) > 1){
+    for (let i = 0; i < arrlength; i++) {
+        if (count(arr, arr[i]) > 1) {
             arr.splice(i, 1);
             i--;
             arrlength--;
@@ -51,7 +50,7 @@ function MatrixTranslation(arr) {
     }
 
     for (let i = 0; i < arrlength; i++) {
-        if (arr[i] > arr[i+1]) {
+        if (arr[i] > arr[i + 1]) {
             let tmp = arr[i]
             arr[i] = arr[i + 1];
             arr[i + 1] = tmp;
@@ -87,20 +86,18 @@ function MatrixTranslation(arr) {
                     translatedmatrix[i][j] = arr[l];
                     l++;
                 }
-            }
-            else {
+            } else {
                 for (k = 0; k < couplerows; k++) {
                     if ((translatedmatrix[0][j] == couplesmatrix[k][1] && translatedmatrix[i][0] == couplesmatrix[k][0])) {
                         translatedmatrix[i][j] = '1';
                         break;
-                    }
-                    else {
+                    } else {
                         translatedmatrix[i][j] = '0';
                     }
                 }
             }
         }
-        
+
     }
     return translatedmatrix;
 }
@@ -127,7 +124,7 @@ function symmetric(matrix) {
     let symk = 0;
     let matrixsize = (rows - 1) * (columns - 1);
     for (let i = 1; i < rows; i++) {
-        for (let j = 1; j < columns; j ++) {
+        for (let j = 1; j < columns; j++) {
             if (matrix[i][j] == matrix[j][i]) {
                 symk++;
             }
@@ -140,19 +137,20 @@ function symmetric(matrix) {
 }
 
 var skewk;
+var matrixsize;
 
 function skew_symmetry(matrix) {
     var skew = false;
     skewk = 0;
-    let matrixsize = (rows - 1) * (columns - 1);
+    let matrixsize = (rows - 2) * (columns - 1);
     for (let i = 1; i < rows; i++) {
-        for (let j = 1; j < columns; j ++) {
-            if (matrix[i][j] >= matrix[j][i]) {
+        for (let j = 1; j < columns; j++) {
+            if (matrix[i][j] != matrix[j][i] && i != j) {
                 skewk++;
             }
         }
     }
-    if (skewk >= rows) {
+    if (skewk == matrixsize) {
         skew = true;
     }
     return skew;
@@ -180,16 +178,21 @@ function res() {
     var couples = document.getElementById('couples');
     couple = check(couples.value);
     arr = check(couples.value);
-    if (couple == false){
+    if (couple == false) {
         alert(err);
-    }
-    else{
+    } else {
         matrix = MatrixTranslation(arr);
+        for (let i = 0; i < rows; i++) {
+            for (let j = 0; j < columns; j++) {
+                resfull += matrix[i][j] + ' ';
+            }
+            resfull += '\n';
+        }
         resfull += "Рефлексивность: " + reflexivity(matrix) + "\n";
         resfull += "Симметричность: " + symmetric(matrix) + "\n";
         resfull += "Кососимметричность: " + skew_symmetry(matrix) + "\n";
         resfull += "Транзитивность: " + transitivity(matrix) + "\n";
-        
+
         document.getElementById("outResult").innerText = "Результат выполнения операций:\n" + resfull;
     }
 }

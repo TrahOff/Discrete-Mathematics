@@ -2,19 +2,14 @@ var err, m1, m2, m3, defimat;
 var long1, long2, long3;
 
 //проверка ввода
-function check(str){
+function check(str) {
     let arr = false;
     var long = str.length;
-    if(long > 0) {
+    if (long > 0) {
         arr = str.split(" ");
         var quantity = arr.length;
         //Проверка на ввод
-        for(let i = 0; i < quantity; i++) {
-            if (quantity > 4) {
-                err = "Ошибка ввода!\nВведите две пары чисел!";
-                arr = false;
-                break;
-            }
+        for (let i = 0; i < quantity; i++) {
             //проверка, что введены числа
             if (arr[i] < '0' || arr[i] > '9') {
                 err = "Ошибка при вводе массива!\n" + " В элементе " + arr[i];
@@ -24,7 +19,7 @@ function check(str){
                 break;
             }
         }
-    } else{
+    } else {
         err = "Массив не должен быть пустым!\nВведите пары чисел!";
     }
     return arr;
@@ -60,7 +55,7 @@ function definition(m1, m2, m3) {
                 defimat[i][j] = m2[j];
             }
         }
-    } 
+    }
     var defin = false;
     var k = 0;
     for (let j = 0; j < long1; j++) {
@@ -86,7 +81,7 @@ function res() {
     m2 = check(chm2.value);
     var chm3 = document.getElementById('m3');
     m3 = check(chm3.value);
-    if (m1 == false || m2 == false || m3 == false){
+    if (m1 == false || m2 == false || m3 == false) {
         alert(err);
     } else {
         var lch = longcheck(m1, m2, m3);

@@ -1,21 +1,22 @@
-var err, matrix, couple, rows, columns, arr, couplesmatrix, arrlength;
+var err, matrix, couple, rows, columns, arr, couplesmatrix, arrlength, elements, newell;
 
 //проверка ввода
 function check(str) {
     let arr = false;
     var long = str.length;
     if (long > 0) {
-        arr = str.split(" ");
+        arr = str.split("; ");
         var quantity = arr.length;
         //Проверка на ввод
         for (let i = 0; i < quantity; i++) {
-            if (quantity % 2 != 0) {
+            var quantity = arr[i].length;
+            if (quantity % 2 == 0) {
                 err = "Ошибка ввода!\nВведены не пары чисел!\nДобавьте или уберите число!";
                 arr = false;
                 break;
             }
             //проверка, что введены числа
-            if (arr[i] < '0' || arr[i] > '9') {
+            if (arr[i][0] < '0' || arr[i][2] > '9') {
                 err = "Ошибка при вводе массива!\n" + " В элементе " + arr[i];
                 err += "\nВведите число в диапозоне от 0 до 9!";
                 err += "\nИсправьте" + i + "элемент (" + arr[i] + ")";
@@ -32,10 +33,26 @@ function check(str) {
 //счётчик элементов
 function count(arr, el) {
     let k = 0;
-    for (let i = 0; i < arr.length; i++)
-        if (arr[i] == el)
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] == el) {
             k++;
+        }
+    }
     return k;
+}
+
+//вывод всех чисел в одномерный массив
+function deleting(arr) {
+    var elemarr = [];
+    let q = 0;
+    for (let i = 0; i < arr.length; i++) {
+        arr[i] = arr[i].split(" ");
+        for (let j = 0; j < 2; j++) {
+            elemarr[q] = arr[i][j];
+            q++
+        }
+    }
+    return elemarr;
 }
 
 //выделение элементов массива по одному разу и постороение матрицы из нулей и единиц
@@ -59,13 +76,9 @@ function MatrixTranslation(arr) {
 
     couplesmatrix = [];
     let k = 0;
-    var couplerows = couple.length / 2;
+    var couplerows = couple.length;
     for (let i = 0; i < couplerows; i++) {
-        couplesmatrix[i] = [];
-        for (let j = 0; j < 2; j++) {
-            couplesmatrix[i][j] = couple[k];
-            k++;
-        }
+        couplesmatrix[i] = couple[i].split(" ");
     }
 
     let r = 0;
@@ -178,10 +191,13 @@ function res() {
     var couples = document.getElementById('couples');
     couple = check(couples.value);
     arr = check(couples.value);
+    let arr1 = check(couples.value);
     if (couple == false) {
         alert(err);
     } else {
-        matrix = MatrixTranslation(arr);
+        elements = deleting(arr);
+        newell = deleting(arr1);
+        matrix = MatrixTranslation(elements);
         for (let i = 0; i < rows; i++) {
             for (let j = 0; j < columns; j++) {
                 resfull += matrix[i][j] + ' ';

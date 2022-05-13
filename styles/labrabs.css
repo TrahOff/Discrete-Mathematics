@@ -1,4 +1,4 @@
-body{
+body {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -6,12 +6,12 @@ body{
     background-image: url('../img/7SBV.gif');
 }
 
-*{
+* {
     margin: 0;
     padding: 0;
 }
 
-header{
+header {
     position: center;
     background: #FF8450;
     width: 70%;
@@ -21,16 +21,16 @@ header{
     z-index: 100;
 }
 
-header nav ul{
+header nav ul {
     background: #FF8450;
     list-style: none;
 }
 
-header nav > ul > li{
+header nav>ul>li {
     float: left;
 }
 
-header nav ul li a{
+header nav ul li a {
     display: inline-block;
     padding: 10px 20px;
     text-decoration: none;
@@ -38,7 +38,7 @@ header nav ul li a{
     font-size: 22px;
 }
 
-main{
+main {
     display: flex;
     width: 70%;
     flex-direction: column;
@@ -54,6 +54,9 @@ main{
     padding: 5%;
     background: #FF8450;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
 main .instuction {
@@ -68,12 +71,13 @@ main .instuction {
     font-size: 26px;
 }
 
-.button input{
+.button input {
     background: black;
     color: #FF8450;
     width: 50%;
     font-size: 24px;
     border-radius: 50px;
+    cursor: pointer;
 }
 
 .input input {
@@ -92,4 +96,56 @@ footer {
     text-align: center;
     padding-top: 1%;
     padding-bottom: 1%;
+}
+
+textarea {
+    width: 50%;
+    height: 200px;
+}
+
+p {
+    text-align: center;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+}
+
+.ways {
+    padding: 5%;
+}
+
+.ways input {
+    width: 80%;
+}
+
+.Signed {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 24px;
+    border-bottom: 1px solid black;
+}
+
+table {
+    margin: 5% 0 5% 0;
+    padding: 0 15% 0 15%;
+    width: 100%;
+}
+
+td {
+    padding: 2%;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 18px;
+}
+
+table tr {
+    margin-top: 5%;
+}
+
+.head {
+    background-color: #F1CBB6;
+}
+
+.element {
+    background-color: aliceblue;
 }

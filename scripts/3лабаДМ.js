@@ -1,9 +1,9 @@
-var err, m1, m2, m3, defimat;
+var err, m1, m2, m3;
 var long1, long2, long3;
 
 //проверка ввода
 function check(str) {
-    let arr = false;
+    let arr = [];
     var long = str.length;
     if (long > 0) {
         arr = str.split(" ");
@@ -25,6 +25,34 @@ function check(str) {
     return arr;
 }
 
+
+//проверка ввода отношения
+function checkfun(str) {
+    let arr = false;
+    var long = str.length;
+    if (long > 0) {
+        arr = str.split("; ");
+        var quantity = arr.length;
+        //Проверка на ввод
+        for (let i = 0; i < quantity; i++) {
+            arr[i] = arr[i].split(' ');
+            //проверка, что введены числа
+            for (let j = 0; j < 2; j++) {
+                if (arr[i][j] < '0' || arr[i][j] > '9') {
+                    err = "Ошибка при вводе массива!\n" + " В элементе " + arr[i];
+                    err += "\nВведите число в диапозоне от 0 до 9!";
+                    err += "\nИсправьте" + i + "элемент (" + arr[i] + ")";
+                    arr = false;
+                    break;
+                }
+            }
+        }
+    } else {
+        err = "Массив не должен быть пустым!\nВведите пары чисел!";
+    }
+    return arr;
+}
+
 //сравнение длин
 function longcheck(m1, m2, m3) {
     long1 = m1.length;
@@ -32,7 +60,7 @@ function longcheck(m1, m2, m3) {
     long3 = m3.length;
     arr = false;
     if (long1 == long2) {
-        if (long1 + long2 != long3) {
+        if (long1 != long3) {
             err = "сумма длин множеств не совпаадает с линой отношения!"
             arr = false;
         } else { arr = true; }
@@ -43,26 +71,25 @@ function longcheck(m1, m2, m3) {
     return arr;
 }
 
+var defimat = [];
+
 //сравнение множеств и отношения
 function definition(m1, m2, m3) {
-    var defimat = [];
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < long1; i++) {
         defimat[i] = [];
-        for (let j = 0; j < long1; j++) {
-            if (i == 0) {
-                defimat[i][j] = m1[j];
+        for (let j = 0; j < 2; j++) {
+            if (j == 0) {
+                defimat[i][j] = m1[i];
             } else {
-                defimat[i][j] = m2[j];
+                defimat[i][j] = m2[i];
             }
         }
     }
     var defin = false;
-    var k = 0;
-    for (let j = 0; j < long1; j++) {
-        for (let i = 0; i < 2; i++) {
-            if (defimat[i][j] == m3[k]) {
+    for (let i = 0; i < long1; i++) {
+        for (let j = 0; j < 2; j++) {
+            if (defimat[i][j] == m3[i][j]) {
                 defin = "является";
-                k++;
             } else {
                 defin = "не является";
                 return defin;
@@ -80,7 +107,7 @@ function res() {
     var chm2 = document.getElementById('m2');
     m2 = check(chm2.value);
     var chm3 = document.getElementById('m3');
-    m3 = check(chm3.value);
+    m3 = checkfun(chm3.value);
     if (m1 == false || m2 == false || m3 == false) {
         alert(err);
     } else {

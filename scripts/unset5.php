@@ -6,6 +6,4 @@ unset($_SESSION['numberOfVertices5']);
 unset($_SESSION['matrix5']);
 unset($_SESSION['newMatrix5']);
 
-
-
-header('location: ../pages/5labrabDM.php');
+header("Location: ".$_SERVER["HTTP_REFERER"]);

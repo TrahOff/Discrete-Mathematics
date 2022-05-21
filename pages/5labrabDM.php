@@ -43,7 +43,7 @@
         <?php } 
         if ($_SESSION['newMatrix5'] && !$_SESSION['error5']) { ?>
         <div class="form">
-            <form method="post" action="<?= unSeta() ?>" enctype="multipart/form-data">
+            <form method="post" action="../scripts/unset5.php" enctype="multipart/form-data">
             <div class="Signed">Введённые доступные пути</div>
                 <table>
                 <?php for ($i = 0; $i <= $_SESSION['numberOfVertices5']; $i++) { ?>
@@ -81,25 +81,13 @@
             <div class="instuction">
                 <?php echo $_SESSION['error5']; ?>
             </div>
-            <form method="post" action="<?= unsetAll(); ?>" enctype="multipart/form-data">
+            <form method="post" action="../scripts/unset5.php" enctype="multipart/form-data">
                 <div class="button">
                     <input class="submit" type="submit" value="повторить попытку" />
                 </div>
             </form>
         </div>
-        <?php }
-        function unsetAll() {
-            unset($_SESSION['error5']);
-            unset($_SESSION['numberOfVertices5']);
-            unset($_SESSION['matrix5']);
-            unset($_SESSION['newMatrix5']);
-        }
-
-        function unSeta() {
-            unset($_SESSION['formMatrixOfWays5']);
-            unset($_SESSION['namesOfVertices5']);
-        }
-        ?>
+        <?php } ?>
     </main>
     <footer>
         сайт создан в образовательных целях

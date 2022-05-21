@@ -48,7 +48,7 @@ session_start();
         <?php } 
         if ($_SESSION['newMatrix4'] && !$_SESSION['error4']) { ?>
         <div class="form">
-            <form method="post" action="../scripts/unset4.php" enctype="multipart/form-data">
+            <form method="post" action="<?= unSeta() ?>" enctype="multipart/form-data">
             <div class="Signed">Введённые доступные пути</div>
                 <table>
                 <?php for ($i = 0; $i <= $_SESSION['numberOfVertices4']; $i++) { ?>
@@ -98,6 +98,11 @@ session_start();
             unset($_SESSION['numberOfVertices4']);
             unset($_SESSION['matrix4']);
             unset($_SESSION['newMatrix4']);
+        }
+
+        function unSeta() {
+            unset($_SESSION['formMatrixOfWays4']);
+            unset($_SESSION['namesOfVertices4']);
         }
         ?>
     </main>
